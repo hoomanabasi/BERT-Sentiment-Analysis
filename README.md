@@ -1,47 +1,78 @@
-BERT Sentiment Analysis
-این پروژه شامل فاین‌تیونینگ مدل BERT برای تشخیص احساسات (Sentiment Analysis) روی دیتاست توییت‌ها است. مدل فاین‌تیون‌شده قادر است توییت‌ها را به دو دسته مثبت و منفی طبقه‌بندی کند.
+Sentiment Analysis Using BERT
+This project demonstrates the implementation of a sentiment analysis model using the pre-trained BERT model. The goal is to classify text into three categories: Positive, Negative, and Neutral. The model is built using the Hugging Face Transformers library and TensorFlow.
 
-هدف پروژه
-هدف از این پروژه فاین‌تیون کردن مدل BERT (bert-base-uncased) برای تحلیل احساسات توییت‌ها است. این مدل دو دسته از احساسات را شناسایی می‌کند:
+Overview
+In this project, we fine-tune the BERT model for sentiment analysis tasks. The model is trained on a subset of the Sentiment140 dataset, which consists of tweets with labeled sentiments. The goal is to predict whether a given text is positive, negative, or neutral in sentiment.
 
-مثبت
+Technologies Used
+Python (for implementing the model and processing data)
 
-منفی
+TensorFlow (for model training and evaluation)
 
-ویژگی‌ها
-فاین‌تیون کردن مدل BERT برای طبقه‌بندی احساسات به دو دسته
+Hugging Face Transformers (for using the pre-trained BERT model)
 
-پیش‌پردازش داده‌ها و تمیز کردن متن توییت‌ها
+Streamlit (for building a simple web interface)
 
-آموزش مدل با استفاده از داده‌های توییت‌ها
+NLTK (for text preprocessing like tokenization, stopword removal, and lemmatization)
 
-ارزیابی مدل با استفاده از معیارهای دقت و F1-Score
+Emoji (for handling emojis in the text)
 
-آموزش مدل
-برای آموزش مدل، اسکریپت train.py را اجرا کنید:
+How to Run the Application
+Clone the repository or download the files from Hugging Face Spaces.
+
+Install dependencies: Ensure that you have the required libraries installed. You can install them using the following command:
 
 bash
 Copy
 Edit
-python train.py
-این اسکریپت مدل BERT را فاین‌تیون می‌کند و نتایج ارزیابی را پس از هر دوره (Epoch) نشان می‌دهد.
+pip install -r requirements.txt
+Run the Streamlit App: After installing dependencies, you can run the application locally by using Streamlit:
 
-پارامترهای آموزش:
-epochs: تعداد دوره‌های آموزش (در این پروژه 4 دوره)
+bash
+Copy
+Edit
+streamlit run app.py
+Model Information: The model was fine-tuned using the BERT-base-uncased model from Hugging Face, with a classification layer on top for three sentiment classes.
 
-batch_size: اندازه دسته‌ها برای آموزش (در این پروژه 32)
+Model Training
+The model was trained using the Sentiment140 dataset (subset of 2000 samples), with the following preprocessing steps applied to the text:
 
-مدل پس از آموزش در پوشه model/ ذخیره می‌شود.
+Removing usernames (@username)
 
-پیش‌بینی با مدل ذخیره‌شده
-پس از اینکه مدل آموزش دید، می‌توانید از آن برای پیش‌بینی احساسات یک توییت جدید استفاده کنید. اسکریپت predict.py این کار را انجام می‌دهد.
+Removing URLs
 
-نتایج
-در این پروژه، مدل به خوبی توانست احساسات توییت‌ها را شناسایی کند. نتایج دقیق در زمان آموزش نمایش داده می‌شود و شما می‌توانید در پایان هر دوره (Epoch) دقت مدل را بررسی کنید.
+Handling emojis (converted to text)
 
-خروجی پیش‌بینی:
-مدل دو دسته را پیش‌بینی می‌کند:
+Removing special characters and numbers
 
-مثبت
+Tokenizing the text and removing stopwords
 
-منفی
+Lemmatizing the words to their base form
+
+The model was trained for 2 epochs with a learning rate of 5e-5.
+
+Evaluation
+The model was evaluated on the test set, and the classification report was generated to assess performance. However, due to computational resource limitations, the training was limited to a small subset of the data and a short number of epochs, which resulted in a lower performance score. The full model training was not possible due to resource constraints.
+
+Classification Report:
+Due to resource limitations, the final accuracy is suboptimal. However, the model still provides reasonable performance given the constraints.
+
+Known Issues
+Low Performance: Due to limited computational resources (memory and processing power), the model was trained on a small subset of the data and for fewer epochs than would be ideal. This resulted in lower accuracy and performance compared to what could be achieved with more resources.
+
+Training Time: Training a model of this size requires significant computational resources (e.g., high-end GPUs), which were unavailable during the project.
+
+Accuracy: The current model may not generalize well on unseen data. Training on a larger dataset with more epochs and better resources would likely improve the model's performance.
+
+Future Improvements
+Increase Dataset Size: Training on a larger subset of the Sentiment140 dataset or using a different dataset could improve the model’s ability to generalize.
+
+Increase Training Time: Running the model for more epochs would help it to better learn the underlying patterns in the data.
+
+Use of More Computational Resources: Access to better hardware (e.g., GPUs) would significantly reduce training time and improve model performance.
+
+Model Optimization: Exploring different architectures or fine-tuning hyperparameters could improve the accuracy of the model.
+
+Conclusion
+This project demonstrates the potential of transformer-based models like BERT for sentiment analysis tasks. However, due to computational limitations, the model’s performance is not optimal. With additional resources, the model’s accuracy can be significantly improved.
+
